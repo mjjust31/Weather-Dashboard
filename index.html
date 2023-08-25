@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="./reset.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./style.css" />
-
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
+  ></script>
     <title>Weather Api</title>
   </head>
   <body>
@@ -55,11 +59,13 @@
     </form>
 
     <div class="box-content h-32 w-32 p-4 border-4">
-      <h3 id="show-city"></h3>
-      <ul>
-        <li id="temperature"></li>
-        <li id="wind"></li>
-        <li id="humidity"></li>
+      <div class="show-city"></div>
+      <div class="show-date"></div>
+
+      <ul class="weather-data">
+        <!-- <li class="temperature"></li>
+        <li class="wind"></li>
+        <li class="humidity"></li> -->
       </ul>
     </div>
 
