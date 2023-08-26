@@ -1,0 +1,94 @@
+body,
+html {
+  height: 100%;
+  color: white;
+}
+
+.background-image {
+  background-image: url("./vecteezy_powerful-bright-lightning_6217090_456.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header {
+  background-color: rgb(29, 29, 40);
+  color: white;
+}
+
+.custom-card {
+  margin: 20px auto;
+  border: 3px solid rgb(114, 75, 4);
+  padding: 20px;
+  background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11));
+  width: 25rem;
+  border-radius: 20px;
+}
+
+.show-date {
+  font-size: 25px;
+}
+
+.weather-data {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 15px;
+}
+.city-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-data {
+  line-height: 2.5rem;
+}
+
+.forecast-container h2 {
+  color: red;
+  background-color: yellow;
+  margin: 20px 10px 0px 35px;
+  padding: 10px;
+  font-weight: bolder;
+}
+.weather-card-wrapper {
+  display: flex;
+}
+
+.weather-card {
+  background-image: linear-gradient(rgb(104, 79, 104), rgb(11, 11, 11));
+  margin: 7px 20px;
+  padding: 30px 20px;
+  width: 20%;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  line-height: 1.5rem;
+}
+/* 
+.box-content{
+  margin: 20px auto;
+  border: 3px solid rgb(114, 75, 4) ;
+} */
+
+#display-cities {
+  margin: auto;
+}
+
+#display-cities button {
+  background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11));
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#display-cities button:hover {
+  font-style: italic;
+}
+/* 
+#display-cities button:hover {
+  background-image: linear-gradient(rgb(40, 32, 72), rgb(11, 11, 11));
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  font-family: "Courier New", Courier, monospace;
+} */

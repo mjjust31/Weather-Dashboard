@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style.css" />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script
-    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"
-  ></script>
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"></script>
     <title>Weather Api</title>
   </head>
-  <body>
+  <body class="background-image">
     <header class="text-center header py-8">
       <h1>Weather API: Get the Weather</h1>
     </header>
@@ -54,77 +54,75 @@
           class="search-button text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Search
         </button>
-        <h6 id="display-cities"></h6>
       </div>
     </form>
+    <section class="city-wrapper">
+      <h6 id="display-cities"></h6>
+    </section>
 
-    <div class="box-content h-32 w-32 p-4 border-4">
-      <div class="show-city"></div>
-      <div class="show-date"></div>
+    <div class="box-content custom-card">
+      <div class="show-city text-2xl uppercase pb-8">Chicago</div>
+      <div class="show-date pb-3">Saturday...</div>
 
-      <ul class="weather-data">
+      <ul class="weather-data pb-3">
         <!-- <li class="temperature"></li>
         <li class="wind"></li>
         <li class="humidity"></li> -->
       </ul>
     </div>
 
-    <div class="grid-cols-5 columns-[10rem] custom-five-day">
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <!-- <img /> -->
-        <div class="px-6 py-4">
-          <h1 class="font-bold text-xl mb-2 custom-card-date"></h1>
-          <p class="text-gray-700 text-base custom-card-temperature"></p>
-          <p class="text-gray-700 text-base custom-card-wind"></p>
-          <p class="text-gray-700 text-base custom-card-humidity"></p>
+    <div class="forecast-container">
+      <h2>5-Day Forecast:</h2>
+      <div class="weather-card-wrapper">
+        <div class="weather-card">
+          <h3>Date 1</h3>
+          <p>icon</p>
+          <ul>
+            <li>Temperature</li>
+            <li>Wind</li>
+            <li>Humidity</li>
+          </ul>
         </div>
-        <div class="px-6 pt-4 pb-2"></div>
-      </div>
-
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <!-- <img /> -->
-        <div class="px-6 py-4">
-          <h1 class="font-bold text-xl mb-2 custom-card-date"></h1>
-          <p class="text-gray-700 text-base custom-card-temperature"></p>
-          <p class="text-gray-700 text-base custom-card-wind"></p>
-          <p class="text-gray-700 text-base custom-card-humidity"></p>
+        <div class="weather-card">
+          <h3>Date 2</h3>
+          <p>icon</p>
+          <ul>
+            <li>Temperature</li>
+            <li>Wind</li>
+            <li>Humidity</li>
+          </ul>
         </div>
-        <div class="px-6 pt-4 pb-2"></div>
-      </div>
-
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <!-- <img /> -->
-        <div class="px-6 py-4">
-          <h1 class="font-bold text-xl mb-2 custom-card-date"></h1>
-          <p class="text-gray-700 text-base custom-card-temperature"></p>
-          <p class="text-gray-700 text-base custom-card-wind"></p>
-          <p class="text-gray-700 text-base custom-card-humidity"></p>
+        <div class="weather-card">
+          <h3>Date 3</h3>
+          <p>icon</p>
+          <ul>
+            <li>Temperature</li>
+            <li>Wind</li>
+            <li>Humidity</li>
+          </ul>
         </div>
-        <div class="px-6 pt-4 pb-2"></div>
-      </div>
-
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <!-- <img /> -->
-        <div class="px-6 py-4">
-          <h1 class="font-bold text-xl mb-2 custom-card-date"></h1>
-          <p class="text-gray-700 text-base custom-card-temperature"></p>
-          <p class="text-gray-700 text-base custom-card-wind"></p>
-          <p class="text-gray-700 text-base custom-card-humidity"></p>
+        <div class="weather-card">
+          <h3>Date 4</h3>
+          <p>icon</p>
+          <ul>
+            <li>Temperature</li>
+            <li>Wind</li>
+            <li>Humidity</li>
+          </ul>
         </div>
-        <div class="px-6 pt-4 pb-2"></div>
-      </div>
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <!-- <img /> -->
-        <div class="px-6 py-4">
-          <h1 class="font-bold text-xl mb-2 custom-card-date"></h1>
-          <p class="text-gray-700 text-base custom-card-temperature"></p>
-          <p class="text-gray-700 text-base custom-card-wind"></p>
-          <p class="text-gray-700 text-base custom-card-humidity"></p>
+        <div class="weather-card">
+          <h3>Date 5</h3>
+          <p>icon</p>
+          <ul>
+            <li>Temperature</li>
+            <li>Wind</li>
+            <li>Humidity</li>
+          </ul>
         </div>
-        <div class="px-6 pt-4 pb-2"></div>
       </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./script.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>

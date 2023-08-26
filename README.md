@@ -20,7 +20,7 @@ THEN I am again presented with current and future conditions for that city
 
 Pseudo Code: 
 
-Part I: Framework (Moble First Design)
+Part I: Framework (Mobile First Design)
 1. A header should be created with a title of the application. 
 2. A search bar will need to created with a "search" button.
       a. After the name of the city is and the search button is 'clicked', the name of the city should appear below the search bar.
@@ -35,7 +35,8 @@ Part II: CSS
 Part III Javascript: 
 
 1. When the page first loads, a search bar, search button appear with areas to display data. 
-2. After inputing a city name and clicking the button, 
+2. After inputing a city name and clicking the button, the data is "fected" from open weather
+3. Will need to do current weather and five-day forecast
       a. The name of the city is appending to the page as a button
       b. The current date and weather information is displayed first. 
             a. City
@@ -45,3 +46,18 @@ Part III Javascript:
             e. wind.
             f. humidity
       c. after the current day's weather is displayed, the city shows a five day forecast
+         i. for the five-day content 
+
+
+Content Fixes: 
+
+1. Need to review code for creating a button. Not just adding the new city, but the previous city too unless it's refreshed.
+
+
+2. I  could have also just used the forecast fetch instsead of doing the current weather fetch and the forecast fetch. Might clean up code later.
+        . In just forecast fetch, you could doing coding for current date and future dates in a separate function call with for loop.
+
+3. For forecast data is reading every three hours, so looping through provides the same date.
+            1.https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
+            2. https://www.w3schools.com/jsref/jsref_filter.asp
+            
