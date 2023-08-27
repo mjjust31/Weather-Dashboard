@@ -72,6 +72,7 @@ function displayCurrentWeather(weather) {
   var iconWeather = weather.weather[0].icon;
   var iconTest = "http://openweathermap.org/img/wn/" + iconWeather + "@4x.png";
   iconEl.src = iconTest;
+  iconEl.setAttribute("style", "margin:auto");
 
   showCityEl.append(cityName);
   showDate.appendChild(iconEl);
@@ -102,27 +103,33 @@ function getForecast(city) {
   });
 }
 function displayForecast(weather) {
-  var forecastContainerEl = document.querySelector(".forecast-container");
-  forecastContainerEl.textConent = "";
-  console.log(weather);
-  var forecastData = weather.list;
+  var weatherCardItems = weather.list;
   var fiveDates = [];
-
-  forecastData.forEach(function (weatherItem) {
-    var date = new Date(weatherItem.dt_txt.split(" ")[0]);
-    var formattedDate = formattedDate(date);
-
-    if (!fiveDates.includes(formattedDate)) {
-      fiveDates.push(formattedDate);
-    }
-
-    if (fiveDates.length === 5) {
-      return;
-    }
-  });
-
   console.log(fiveDates);
-}
+
+  for (var i = 0; i < weatherCardItems.length; i++) {
+    var cardItem = weatherCardItems[i];
+    console.log(cardItem); //dispalyed five unqiue dates! Now the other data from the five dates pulled.
+
+    var date = cardItem.dt_txt.split(" ")[0]; //takes the first half of the 'split' dictated by space.
+    console.log(date);
+    if (!fiveDates.includes(date) && fiveDates.length < 5) {
+      fiveDates.push(date);
+    }
+  }
+
+  var forecastData = weather.list.map(function (item) {
+    return {
+      date: item.dt_txt,
+      icon: item.weather[0].icon,
+      temperature: item.main.temp,
+      wind: item.wind.speed,
+      humidity: item.main.humidity,
+    };
+  });
+  console.log(forecastData);
+
+
 searchButtonEl.addEventListener("click", getCityName); //so far, this code displays the user's selection and appends to page.
 
 // var showDate = document.querySelector('.show-date');
