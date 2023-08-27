@@ -49,6 +49,7 @@ html {
   margin: 20px 10px 0px 35px;
   padding: 10px;
   font-weight: bolder;
+  display: flex;
 }
 .weather-card-wrapper {
   display: flex;

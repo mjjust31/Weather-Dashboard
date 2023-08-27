@@ -54,10 +54,10 @@ Content Fixes:
 1. Need to review code for creating a button. Not just adding the new city, but the previous city too unless it's refreshed.
 
 
-2. I  could have also just used the forecast fetch instsead of doing the current weather fetch and the forecast fetch. Might clean up code later.
-        . In just forecast fetch, you could doing coding for current date and future dates in a separate function call with for loop.
-
-3. For forecast data is reading every three hours, so looping through provides the same date.
+2. For forecast data is reading every three hours, so looping through provides the same date.
             1.https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
             2. https://www.w3schools.com/jsref/jsref_filter.asp
+            3. https://www.degreesymbol.net/
+
+3. I attempted to use the fetched data at first using map to filter out for unique dates to push it into a new array. While this helped me learn the map function and how useful it may be in the future, I realized I just could move the 'i' and multiply by 8 to get a new day. (8*3=24; 24 hours in a day, etc.). I realized I was trying to make this more complicated than necessary for the fetched data. 
             

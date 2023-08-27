@@ -52,7 +52,7 @@ function displayCurrentWeather(weather) {
   var showCityEl = document.querySelector(".show-city");
   var showDate = document.querySelector(".show-date");
 
-  var tempature = "Temperature: " + " " + weather.main.temp + " " + "F";
+  var tempature = "Temperature: " + " " + weather.main.temp + " " + "°F";
   var wind = "Wind: " + " " + weather.wind.speed + "MPH";
   var humidity = "Humidity: " + " " + weather.main.humidity + "%";
   var listItems = [tempature, wind, humidity];
@@ -102,34 +102,77 @@ function getForecast(city) {
     }
   });
 }
-function displayForecast(weather) {
-  var weatherCardItems = weather.list;
-  var fiveDates = [];
-  console.log(fiveDates);
+function displayForecast(weatherData) {
+  // Clear previous forecast
+  var weatherCards = document.querySelector(".weather-card-wrapper");
+  weatherCards.innerHTML = "";
 
-  for (var i = 0; i < weatherCardItems.length; i++) {
-    var cardItem = weatherCardItems[i];
-    console.log(cardItem); //dispalyed five unqiue dates! Now the other data from the five dates pulled.
+  // Loop through the weather data
+  for (var i = 0; i < 5; i++) {
+    // Display the next five days
+    var weatherItem = weatherData.list[i * 8]; // Get data for each day. Since it shows every 3 hours.
+    console.log(weatherItem);
+    // Create a weather card
+    var card = document.createElement("div");
+    card.classList.add("weather-card");
 
-    var date = cardItem.dt_txt.split(" ")[0]; //takes the first half of the 'split' dictated by space.
-    console.log(date);
-    if (!fiveDates.includes(date) && fiveDates.length < 5) {
-      fiveDates.push(date);
-    }
+    // Get the icon, temperature, wind, and humidity for the weather item
+
+    var date = weatherItem.dt_txt.split(" ")[0];
+    var newDate = dayjs(date).format("dddd, MMMM DD YYYY");
+    var icon = weatherItem.weather[0].icon;
+    var temperature = weatherItem.main.temp;
+    var wind = weatherItem.wind.speed;
+    var humidity = weatherItem.main.humidity;
+
+    var dateElement = document.createElement("h3");
+    dateElement.textContent = newDate;
+    card.appendChild(dateElement);
+
+    var iconElement = document.createElement("img");
+    iconElement.src = "http://openweathermap.org/img/w/" + icon + ".png";
+    card.appendChild(iconElement);
+
+    var temperatureElement = document.createElement("p");
+    temperatureElement.textContent = "Temperature: " + temperature + "°F";
+    card.appendChild(temperatureElement);
+
+    var windElement = document.createElement("p");
+    windElement.textContent = "Wind: " + wind + " MPH";
+    card.appendChild(windElement);
+
+    var humidityElement = document.createElement("p");
+    humidityElement.textContent = "Humidity: " + humidity + "%";
+    card.appendChild(humidityElement);
+
+    weatherCards.appendChild(card);
   }
+}
 
-  var forecastData = weather.list.map(function (item) {
-    return {
-      date: item.dt_txt,
-      icon: item.weather[0].icon,
-      temperature: item.main.temp,
-      wind: item.wind.speed,
-      humidity: item.main.humidity,
-    };
-  });
-  console.log(forecastData);
-
+// Display the forecast for the current day
 
 searchButtonEl.addEventListener("click", getCityName); //so far, this code displays the user's selection and appends to page.
 
 // var showDate = document.querySelector('.show-date');
+
+// var forecastData = weather.list.filter(function(item) {
+//   return item.name === cityName;//already passing the city through the get function
+//   }).map(function(item) {
+//   return {
+//   city: item.name,
+//   temperature: item.main.temp,
+//   };
+//   });
+
+//   console.log(forecastData);
+//   }
+
+// var forecastData = weather.list.map(function (item) {//testing map function
+//   return {
+//     date: item.dt_txt,
+//     icon: item.weather[0].icon,
+//     temperature: item.main.temp,
+//     wind: item.wind.speed,
+//     humidity: item.main.humidity,
+//   };
+// });
