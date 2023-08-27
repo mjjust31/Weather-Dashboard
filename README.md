@@ -29,13 +29,13 @@ Part I: Framework (Mobile First Design)
 
 Part II: CSS
 
-1. I will use Tailwinds CSS to practice something other than Boostrap for the project coming up
+1. I will use Tailwinds CSS to practice something other than Boostrap for the project coming up.
 
 
 Part III Javascript: 
 
 1. When the page first loads, a search bar, search button appear with areas to display data. 
-2. After inputing a city name and clicking the button, the data is "fected" from open weather
+2. After inputing a city name and clicking the button, the data is "fetced" from open weather
 3. Will need to do current weather and five-day forecast
       a. The name of the city is appending to the page as a button
       b. The current date and weather information is displayed first. 
@@ -46,8 +46,7 @@ Part III Javascript:
             e. wind.
             f. humidity
       c. after the current day's weather is displayed, the city shows a five day forecast
-         i. for the five-day content 
-
+4. After readping the API documentation, OpenWeather has a current weather anda  five day forecast. Both will need to be used. 
 
 Content Fixes: 
 

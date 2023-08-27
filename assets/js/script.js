@@ -2,21 +2,25 @@ var searchButtonEl = document.querySelector(".search-button");
 var checkURL = "";
 var displayCityEl = document.querySelector("#display-cities");
 var selectedCities = [];
+var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
+var parameters = "&units=imperial";
+// var selectedCity = userInputEl.value.trim();
 
+function createCityButton(city) {
+  var cityButton = document.createElement("button");
+  cityButton.setAttribute(
+    "style",
+    " background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11))"
+  );
+  cityButton.textContent = city;
+  displayCityEl.appendChild(cityButton);
+}
 function getCityName(event) {
   event.preventDefault();
   // console.log('hi')
   var userInputEl = document.querySelector('input[name="userCity"]');
   var selectedCity = userInputEl.value.trim();
   userInputEl.value = "";
-
-  var cityButton = document.createElement("button");
-  cityButton.setAttribute(
-    "style",
-    " background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11))"
-  );
-  cityButton.textContent = selectedCity;
-  displayCityEl.appendChild(cityButton);
 
   if (selectedCity) {
     getTodaysWeather(selectedCity);
@@ -25,10 +29,6 @@ function getCityName(event) {
     alert("Try again with valid city name");
   }
 }
-
-var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
-var parameters = "&units=imperial";
-
 function getTodaysWeather(city) {
   // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
   var baseSearch = "https://api.openweathermap.org/data/2.5/weather";
@@ -43,11 +43,15 @@ function getTodaysWeather(city) {
       response.json().then(function (weather) {
         console.log("DATA:", weather);
         displayCurrentWeather(weather);
+        createCityButton(city);
       });
+    } else if (response.status === 404) {
+      alert("Please enter the name of a valid city");
+    } else {
+      alert("Error, please try again");
     }
   });
 }
-
 function displayCurrentWeather(weather) {
   var showCityEl = document.querySelector(".show-city");
   var showDate = document.querySelector(".show-date");
@@ -85,7 +89,6 @@ function displayCurrentWeather(weather) {
     weatherData.appendChild(listEl);
   }
 }
-
 function getForecast(city) {
   // https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
   var baseSearch = "https://api.openweathermap.org/data/2.5/forecast";
@@ -124,6 +127,7 @@ function displayForecast(weatherData) {
     var temperature = weatherItem.main.temp;
     var wind = weatherItem.wind.speed;
     var humidity = weatherItem.main.humidity;
+    // var pItems = [temperature, wind, humidity];
 
     var dateElement = document.createElement("h3");
     dateElement.textContent = newDate;
@@ -148,6 +152,28 @@ function displayForecast(weatherData) {
     weatherCards.appendChild(card);
   }
 }
+
+//The created buttons for the city, but be attached to the parent like in below's exercise.
+//In our case the parent element for the buttons is the ID "display-cities"
+
+//   // Dynamically create buttons
+//   // Create a for-loop to iterate through the letters array.
+//   for (var i = 0; i < letters.length; i++) {
+//     // Create button
+//     var letterBtn = $('<button>');
+//     // Assign style to the button
+//     letterBtn.addClass('letter-button btn btn-info');
+//     // Assign the letter to the data-letter attribute
+//     letterBtn.attr('data-letter', letters[i]);
+//     // Display the letter
+//     letterBtn.text(letters[i]);
+//     // Attach the letter element
+//     buttonListEl.append(letterBtn);
+//   }
+// }
+
+// // Delegate event listener to the parent element, <div id="buttons">
+// buttonListEl.on('click', '.letter-button', function (event) {
 
 // Display the forecast for the current day
 
