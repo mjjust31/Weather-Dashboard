@@ -37,6 +37,7 @@ function getCityName(event) {
   if (selectedCity) {
     getTodaysWeather(selectedCity);
     getForecast(selectedCity);
+
   } else {
     alert("Try again with valid city name");
   }
@@ -168,6 +169,7 @@ function displayForecast(weatherData) {
 searchButtonEl.addEventListener("click", getCityName);
 
 displayCityEl.addEventListener("click", function (event) {
+  console.log(event)
   if (event.target.tagName === "BUTTON") {
     // Get the weather data for the selected city
     var city = event.target.textContent;
@@ -175,6 +177,8 @@ displayCityEl.addEventListener("click", function (event) {
     getForecast(city);
   }
 });
+
+
 
 //now I need a function for the the buttons.
 //in the display-cities parent container,
