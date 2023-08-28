@@ -1,7 +1,7 @@
 var searchButtonEl = document.querySelector(".search-button");
 var checkURL = "";
 var displayCityEl = document.querySelector("#display-cities");
-var selectedCities = [];
+// var selectedCities = [];
 var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
 var parameters = "&units=imperial";
 // var selectedCity = userInputEl.value.trim();
@@ -120,14 +120,14 @@ function displayForecast(weatherData) {
     card.classList.add("weather-card");
 
     // Get the icon, temperature, wind, and humidity for the weather item
-
+    //apend each item to the page.
     var date = weatherItem.dt_txt.split(" ")[0];
     var newDate = dayjs(date).format("dddd, MMMM DD YYYY");
     var icon = weatherItem.weather[0].icon;
     var temperature = weatherItem.main.temp;
     var wind = weatherItem.wind.speed;
     var humidity = weatherItem.main.humidity;
-    // var pItems = [temperature, wind, humidity];
+    // var items = [temperature, wind, humidity];
 
     var dateElement = document.createElement("h3");
     dateElement.textContent = newDate;
@@ -137,21 +137,44 @@ function displayForecast(weatherData) {
     iconElement.src = "http://openweathermap.org/img/w/" + icon + ".png";
     card.appendChild(iconElement);
 
-    var temperatureElement = document.createElement("p");
+    var temperatureElement = document.createElement("li");
     temperatureElement.textContent = "Temperature: " + temperature + "°F";
     card.appendChild(temperatureElement);
 
-    var windElement = document.createElement("p");
+    var windElement = document.createElement("li");
     windElement.textContent = "Wind: " + wind + " MPH";
     card.appendChild(windElement);
 
-    var humidityElement = document.createElement("p");
+    var humidityElement = document.createElement("li");
     humidityElement.textContent = "Humidity: " + humidity + "%";
     card.appendChild(humidityElement);
 
     weatherCards.appendChild(card);
   }
 }
+
+searchButtonEl.addEventListener("click", getCityName);
+
+displayCityEl.addEventListener("click", function () {
+  if (displayCityEl) {
+    var buttonEl = displayCityEl.querySelectorAll("button");
+    if (buttonEl) {
+      var buttonText = buttonEl.textContent;
+      displayCityAgain(buttonText);
+      console.log(buttonText);
+    }
+  }
+});
+
+function displayCityAgain(city) {
+  getForecast(city);
+  getTodaysWeather(city);
+}
+//now I need a function for the the buttons.
+//in the display-cities parent container,
+//When an element that is a button element
+//and when the button's text content matches a city name
+//the fuctions of getToday Weather and get Forecast should be called
 
 //The created buttons for the city, but be attached to the parent like in below's exercise.
 //In our case the parent element for the buttons is the ID "display-cities"
@@ -177,7 +200,7 @@ function displayForecast(weatherData) {
 
 // Display the forecast for the current day
 
-searchButtonEl.addEventListener("click", getCityName); //so far, this code displays the user's selection and appends to page.
+//so far, this code displays the user's selection and appends to page.
 
 // var showDate = document.querySelector('.show-date');
 

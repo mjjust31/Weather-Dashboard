@@ -2,6 +2,19 @@ body,
 html {
   height: 100%;
   color: white;
+  background-color: black;
+}
+
+label {
+  font-size: 2rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: black;
+  margin: 5px;
+}
+
+.weather-card li {
+  list-style: none;
 }
 
 .background-image {
@@ -15,6 +28,7 @@ html {
 .header {
   background-color: rgb(29, 29, 40);
   color: white;
+  font-size: 24px;
 }
 
 .custom-card {
@@ -24,6 +38,11 @@ html {
   background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11));
   width: 25rem;
   border-radius: 20px;
+}
+
+.show-city {
+  font-family: "Tilt Prism", cursive;
+  font-size: 35px;
 }
 
 .show-date {
@@ -44,15 +63,22 @@ html {
 }
 
 .forecast-container h2 {
-  color: red;
-  background-color: yellow;
+  color: rgb(217, 205, 40);
+  background-color: rgb(20, 20, 20);
   margin: 20px 10px 0px 35px;
   padding: 10px;
   font-weight: bolder;
-  display: flex;
+  border-radius: 5px;
+  border: 1px solid rgb(84, 58, 10); 
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center ; */
 }
 .weather-card-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .weather-card {
@@ -60,9 +86,9 @@ html {
   margin: 7px 20px;
   padding: 30px 20px;
   width: 20%;
-  flex-wrap: wrap;
   border-radius: 20px;
   line-height: 1.5rem;
+  justify-content: center;
 }
 /* 
 .box-content{
@@ -70,14 +96,10 @@ html {
   border: 3px solid rgb(114, 75, 4) ;
 } */
 
-#display-cities {
-  margin: auto;
-}
-
 #display-cities button {
   background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11));
   padding: 20px;
-  margin: auto;
+  /* margin: auto; */
   border-radius: 20px;
   font-family: "Courier New", Courier, monospace;
 }
@@ -93,3 +115,50 @@ html {
   border-radius: 20px;
   font-family: "Courier New", Courier, monospace;
 } */
+
+/* # Tablet */
+
+/* desktop */
+@media (min-width: 992px) {
+  /* .weather-card-wrapper {
+    display: flex;
+  } */
+  .weather-card-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .main-wrapper {
+    display: flex;
+  }
+  .city-wrapper {
+    flex-direction: column;
+  }
+
+  .custom-card {
+    width: 50%;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #display-cities {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+
+  #display-cities button {
+    width: 50%;
+  }
+
+  input {
+    margin: 20px 0px;
+  }
+
+  label {
+    color: rgb(54, 36, 4);
+  }
+}
