@@ -5,21 +5,33 @@ var displayCityEl = document.querySelector("#display-cities");
 var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
 var parameters = "&units=imperial";
 // var selectedCity = userInputEl.value.trim();
-
 function createCityButton(city) {
-  var cityButton = document.createElement("button");
-  cityButton.setAttribute(
-    "style",
-    " background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11))"
-  );
-  cityButton.textContent = city;
-  displayCityEl.appendChild(cityButton);
+  var selectedCities = displayCityEl.children;
+  var cityExists = false;
+
+  for (var i = 0; i < selectedCities.length; i++) {
+    if (selectedCities[i].textContent === city) {
+      cityExists = true;
+      break;
+    }
+  }
+
+  if (!cityExists) {
+    var cityButton = document.createElement("button");
+    cityButton.setAttribute(
+      "style",
+      "background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11))"
+    );
+    cityButton.textContent = city;
+    displayCityEl.appendChild(cityButton);
+  }
 }
+
 function getCityName(event) {
   event.preventDefault();
   // console.log('hi')
   var userInputEl = document.querySelector('input[name="userCity"]');
-  var selectedCity = userInputEl.value.trim();
+  var selectedCity = userInputEl.value.trim().toUpperCase();
   userInputEl.value = "";
 
   if (selectedCity) {
@@ -155,21 +167,15 @@ function displayForecast(weatherData) {
 
 searchButtonEl.addEventListener("click", getCityName);
 
-displayCityEl.addEventListener("click", function () {
-  if (displayCityEl) {
-    var buttonEl = displayCityEl.querySelectorAll("button");
-    if (buttonEl) {
-      var buttonText = buttonEl.textContent;
-      displayCityAgain(buttonText);
-      console.log(buttonText);
-    }
+displayCityEl.addEventListener("click", function (event) {
+  if (event.target.tagName === "BUTTON") {
+    // Get the weather data for the selected city
+    var city = event.target.textContent;
+    getTodaysWeather(city);
+    getForecast(city);
   }
 });
 
-function displayCityAgain(city) {
-  getForecast(city);
-  getTodaysWeather(city);
-}
 //now I need a function for the the buttons.
 //in the display-cities parent container,
 //When an element that is a button element
