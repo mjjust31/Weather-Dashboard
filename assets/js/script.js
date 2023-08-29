@@ -2,7 +2,7 @@ var searchButtonEl = document.querySelector(".search-button");
 var checkURL = "";
 var displayCityEl = document.querySelector("#display-cities");
 // var selectedCities = [];
-var apiKey = "";
+var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
 var parameters = "&units=imperial";
 // var selectedCity = userInputEl.value.trim();
 function createCityButton(city) {
