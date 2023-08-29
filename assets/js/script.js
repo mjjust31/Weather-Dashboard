@@ -1,7 +1,7 @@
 var searchButtonEl = document.querySelector(".search-button");
 var checkURL = "";
 var displayCityEl = document.querySelector("#display-cities");
-
+var showDate = document.querySelector('.show-date')
 // var selectedCities = [];
 var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
 var parameters = "&units=imperial";
@@ -9,7 +9,7 @@ var parameters = "&units=imperial";
 
 function init() {
   displayTodayFromLocal();
-  createCityButton(); //needs text in button
+  buttonPrevious(); //needs text in button
 }
 function createCityButton(city) {
   var selectedCities = displayCityEl.children;
@@ -172,26 +172,8 @@ function displayForecast(weatherData) {
     card.appendChild(humidityElement);
 
     weatherCards.appendChild(card);
-
-    var weatherDay = {//only showing the date of the 5day right now.
-      date: newDate,
-      icon: icon,
-      temperature: temperature,
-      wind: wind,
-      humidity: humidity,
-    };
-    localStorage.setItem("forecastData", JSON.stringify(weatherDay));
   }
 }
-// ForecastToLocalStorage(city, weather);
-
-// Save weather data to local storage
-// var weather = {
-//   date: newDate,
-//   icon: icon,
-//   temperature: temperature,
-//   wind: wind,
-//   humidity: humidity,
 
 searchButtonEl.addEventListener("click", getCityName);
 
@@ -265,6 +247,19 @@ function displayTodayFromLocal() {
 //   localStorage.setItem("forecastData", JSON.stringify(forecastWeather));
 // }
 
+function buttonPrevious() {
+  var lastDayWeather = JSON.parse(localStorage.getItem("weatherData"));
+  if (lastDayWeather !== null) {
+    var cityButton = document.createElement("button");
+    cityButton.setAttribute(
+      "style",
+      "background-image: linear-gradient(rgb(60, 57, 57), rgb(11, 11, 11))"
+    );
+    cityButton.textContent = lastDayWeather.city;
+    displayCityEl.appendChild(cityButton);
+  }
+}
+
 // function displayForecastFromLocal(){
 
 // }_
@@ -321,3 +316,28 @@ init();
 
 //   console.log(forecastData);
 //   }
+
+// var forecastData = [];
+// var weatherDay = {
+//   //only showing the date of the 5day right now.
+//   city: city,
+//   date: newDate,
+//   icon: icon,
+//   temperature: temperature,
+//   wind: wind,
+//   humidity: humidity,
+// };
+
+// ForecastToLocalStorage(city, weather);
+
+// Save weather data to local storage
+// var weather = {
+//   date: newDate,
+//   icon: icon,
+//   temperature: temperature,
+//   wind: wind,
+//   humidity: humidity,
+// forecastData.push(weatherDay);
+// console.log(forecastData);
+
+// localStorage.setItem("forecastData", JSON.stringify(forecastData));

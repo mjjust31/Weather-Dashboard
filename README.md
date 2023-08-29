@@ -50,7 +50,7 @@ Part III Javascript:
 
 Content Fixes: 
 
-1. Need to review code for creating a button. Not just adding the new city, but the previous city too unless it's refreshed.
+1. Need to review code for creating a button. Not just adding the new city, but the previous city too unless it's refreshed. I realized also I could have just used the forecast api since it displayed the same day as well. This caused a minor glitch/error when reviewing five-day forecast.
 
 
 2. For forecast data is reading every three hours, so looping through provides the same date.
