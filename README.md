@@ -61,3 +61,6 @@ Content Fixes:
 3. I attempted to use the fetched data at first using map to filter out for unique dates to push it into a new array. While this helped me learn the map function and how useful it may be in the future, I realized I just could move the 'i' and multiply by 8 to get a new day. (8*3=24; 24 hours in a day, etc.). I realized I was trying to make this more complicated than necessary for the fetched data. 
 
 4. Break statement - https://www.w3schools.com/jsref/jsref_break.asp#:~:text=The%20break%20statement%20breaks%20out,the%20loop%20(if%20any). I reviewing ways to say "if this button already exists on the page, stop the function from executing. If the button does NOT exist, create the button. Essentially after reading this, the break statement will stop anything else that is listed in the function. Therefore, by adding break, it will not execute any further code in the script.
+
+
+5.Forecast Data to local storage. With the current set up for forecast data, it is showing the 5th day only and not all of dive days. Need to push into an array of data to capture each loop before saving to local storage.

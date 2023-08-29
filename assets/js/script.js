@@ -1,10 +1,16 @@
 var searchButtonEl = document.querySelector(".search-button");
 var checkURL = "";
 var displayCityEl = document.querySelector("#display-cities");
+
 // var selectedCities = [];
 var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
 var parameters = "&units=imperial";
 // var selectedCity = userInputEl.value.trim();
+
+function init() {
+  displayTodayFromLocal();
+  createCityButton(); //needs text in button
+}
 function createCityButton(city) {
   var selectedCities = displayCityEl.children;
   var cityExists = false;
@@ -35,12 +41,11 @@ function getCityName(event) {
   userInputEl.value = "";
   var selectedCities = [];
 
-  if (selectedCity) {
+  if (!selectedCity) {
+    alert("Try again with valid city name");
+  } else {
     getTodaysWeather(selectedCity);
     getForecast(selectedCity);
-    localStorage.setItem("selectedCity", selectedCity);
-  } else {
-    alert("Try again with valid city name");
   }
 }
 function getTodaysWeather(city) {
@@ -58,6 +63,7 @@ function getTodaysWeather(city) {
         console.log("DATA:", weather);
         displayCurrentWeather(weather);
         createCityButton(city);
+        CurrentDayToLocalStorage(city, weather);
       });
     } else if (response.status === 404) {
       alert("Please enter the name of a valid city");
@@ -85,6 +91,7 @@ function displayCurrentWeather(weather) {
 
   todayEl.textContent = dayjs().format("dddd, MMMM DD YYYY");
   cityName.textContent = weather.name;
+  // console.log(todayEl)
 
   var iconEl = document.createElement("img");
   var iconWeather = weather.weather[0].icon;
@@ -115,6 +122,7 @@ function getForecast(city) {
       response.json().then(function (weather) {
         console.log("Data:", weather);
         displayForecast(weather);
+        // saveForecastToLocal(city, weather);
       });
     }
   });
@@ -164,8 +172,26 @@ function displayForecast(weatherData) {
     card.appendChild(humidityElement);
 
     weatherCards.appendChild(card);
+
+    var weatherDay = {//only showing the date of the 5day right now.
+      date: newDate,
+      icon: icon,
+      temperature: temperature,
+      wind: wind,
+      humidity: humidity,
+    };
+    localStorage.setItem("forecastData", JSON.stringify(weatherDay));
   }
 }
+// ForecastToLocalStorage(city, weather);
+
+// Save weather data to local storage
+// var weather = {
+//   date: newDate,
+//   icon: icon,
+//   temperature: temperature,
+//   wind: wind,
+//   humidity: humidity,
 
 searchButtonEl.addEventListener("click", getCityName);
 
@@ -179,7 +205,85 @@ displayCityEl.addEventListener("click", function (event) {
   }
 });
 
-console.log(selectedCity)
+function CurrentDayToLocalStorage(city, weather) {
+  // Save city and weather data to localStorage
+
+  var todayWeather = {
+    city: city,
+    icon: weather.weather[0].icon,
+    date: weather.today,
+    temp: weather.main.temp,
+    wind: weather.wind.speed,
+    humidity: weather.main.humidity,
+  };
+
+  localStorage.setItem("weatherData", JSON.stringify(todayWeather));
+}
+
+function displayTodayFromLocal() {
+  var showDate = document.querySelector(".show-date");
+
+  var lastDayWeather = JSON.parse(localStorage.getItem("weatherData"));
+  if (lastDayWeather !== null) {
+    document.querySelector(".show-city").textContent = lastDayWeather.city;
+    // Get temperature, humidity, and wind from local storage
+    var storedTemp = "Temperature: " + " " + lastDayWeather.temp + " " + " °F";
+    var storedHumidity = "Humidity: " + " " + lastDayWeather.humidity + " %";
+    var storedWind = "Wind: " + " " + lastDayWeather.wind + " MPH";
+    var storedIcon = lastDayWeather.icon;
+    //Same code as displaying previously from original data, just using stored.
+
+    var listItems = [];
+    var weatherData = document.querySelector(".weather-data");
+    // Push the stored data into the listItems array
+    listItems.push(storedTemp, storedHumidity, storedWind);
+
+    var iconEl = document.createElement("img");
+    var iconTest = "http://openweathermap.org/img/wn/" + storedIcon + "@4x.png";
+    iconEl.src = iconTest;
+    iconEl.setAttribute("style", "margin:auto");
+    showDate.appendChild(iconEl);
+
+    // Iterate over the listItems array
+    for (var i = 0; i < listItems.length; i++) {
+      var listItem = document.createElement("li");
+      listItem.textContent = listItems[i];
+      weatherData.appendChild(listItem);
+    }
+  }
+}
+
+// function saveForecastToLocal(city, weather) {
+//   var forecastWeather = {
+//     city: city,
+//     date: weather.dt_txt,
+//     icon: weather.weather[0].icon,
+//     temperature: weather.main.temp,
+//     wind: weather.wind.speed,
+//     humidity: weather.main.humidity,
+//   };
+//   localStorage.setItem("forecastData", JSON.stringify(forecastWeather));
+// }
+
+// function displayForecastFromLocal(){
+
+// }_
+
+// document.querySelector(".show-date").textContent = lastDayWeather.
+
+init();
+
+// function ForecastToLocalStorage(city, weather) {
+//   // Retrieve existing forecast data from local storage
+//   var forecastData = JSON.parse(localStorage.getItem("forecastData")) || {};
+
+//   // Add or update the forecast data for the city
+//   forecastData[city] = weather;
+
+//   // Save the updated forecast data to local storage
+//   localStorage.setItem("forecastData", JSON.stringify(forecastData));
+// }
+// console.log(selecftedCity);
 
 //now I need a function for the the buttons.
 //in the display-cities parent container,
@@ -215,24 +319,5 @@ console.log(selectedCity)
 
 // var showDate = document.querySelector('.show-date');
 
-// var forecastData = weather.list.filter(function(item) {
-//   return item.name === cityName;//already passing the city through the get function
-//   }).map(function(item) {
-//   return {
-//   city: item.name,
-//   temperature: item.main.temp,
-//   };
-//   });
-
 //   console.log(forecastData);
 //   }
-
-// var forecastData = weather.list.map(function (item) {//testing map function
-//   return {
-//     date: item.dt_txt,
-//     icon: item.weather[0].icon,
-//     temperature: item.main.temp,
-//     wind: item.wind.speed,
-//     humidity: item.main.humidity,
-//   };
-// });
