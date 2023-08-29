@@ -2,7 +2,7 @@ var searchButtonEl = document.querySelector(".search-button");
 var checkURL = "";
 var displayCityEl = document.querySelector("#display-cities");
 // var selectedCities = [];
-var apiKey = "b2a3b52aded2be8f63c9c9b521271bef";
+var apiKey = "";
 var parameters = "&units=imperial";
 // var selectedCity = userInputEl.value.trim();
 function createCityButton(city) {
@@ -33,11 +33,12 @@ function getCityName(event) {
   var userInputEl = document.querySelector('input[name="userCity"]');
   var selectedCity = userInputEl.value.trim().toUpperCase();
   userInputEl.value = "";
+  var selectedCities = [];
 
   if (selectedCity) {
     getTodaysWeather(selectedCity);
     getForecast(selectedCity);
-
+    localStorage.setItem("selectedCity", selectedCity);
   } else {
     alert("Try again with valid city name");
   }
@@ -169,7 +170,7 @@ function displayForecast(weatherData) {
 searchButtonEl.addEventListener("click", getCityName);
 
 displayCityEl.addEventListener("click", function (event) {
-  console.log(event)
+  console.log(event);
   if (event.target.tagName === "BUTTON") {
     // Get the weather data for the selected city
     var city = event.target.textContent;
@@ -178,7 +179,7 @@ displayCityEl.addEventListener("click", function (event) {
   }
 });
 
-
+console.log(selectedCity)
 
 //now I need a function for the the buttons.
 //in the display-cities parent container,
