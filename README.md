@@ -1,4 +1,9 @@
 # Weather-Dashboard
+Live link: https://mjjust31.github.io/Weather-Dashboard/
+
+
+![Alt text](<Screen Shot 2023-08-30 at 6.17.57 PM.png>)
+![Alt text](<Screen Shot 2023-08-30 at 6.17.51 PM.png>)
 
 
 #User Sotry

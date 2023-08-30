@@ -121,7 +121,7 @@ function getForecast(city) {
     if (response.ok) {
       response.json().then(function (weather) {
         console.log("Data:", weather);
-        displayForecast(weather);
+        displayForecast(weather);cd
         // saveForecastToLocal(city, weather);
       });
     }
